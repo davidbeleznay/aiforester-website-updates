@@ -1,12 +1,13 @@
 # Changelog
 
 ## 2025-05-04
-- Fixed critical mobile display issue where text was covering the face in hero image
-- Repositioned text to only appear in the lower half of mobile screens
-- Created transparent-to-dark gradient that preserves the top portion of the image
-- Used absolute positioning to ensure text stays in bottom section
-- Adjusted background-position to center top to prioritize face visibility
-- Optimized text size and contrast for better readability against all backgrounds
+- Fixed critical iOS-specific display issues with hero image on iPhone
+- Implemented specialized iOS Safari support using `-webkit-fill-available`
+- Changed positioning method to use flexbox instead of absolute positioning for better iOS compatibility
+- Adjusted gradient breakpoints to ensure text remains only in the bottom half
+- Modified background-position to focus higher on the image (face area)
+- Added iOS-specific media query using `@supports (-webkit-touch-callout: none)`
+- Improved viewport handling to prevent layout issues on iOS Safari
 - Updated hero content with more brand-focused messaging
 
 ## 2025-04-27
