@@ -1,5 +1,13 @@
 # Changelog
 
+## 2025-05-04
+- Improved hero image display on mobile devices
+- Updated gradient overlay for better text readability on small screens
+- Adjusted image positioning and text alignment for mobile
+- Added extra breakpoint for small mobile devices
+- Optimized padding and spacing for different screen sizes
+- Updated hero content with more brand-focused messaging
+
 ## 2025-04-27
 - Created `/content/blog/` directory for future blog content
 - Added starter blog post: "Welcome to AI Forester"
