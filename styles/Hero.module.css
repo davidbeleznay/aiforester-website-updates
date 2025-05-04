@@ -16,47 +16,68 @@
   height: 100%;
   background-image: url('/images/hero-image.jpg'); /* Update this path to your actual image */
   background-size: cover;
-  background-position: center;
+  background-position: center 30%; /* Focus more on top of image */
   z-index: 1;
 }
 
-.overlay {
+/* New split structure to guarantee text in bottom half */
+.heroSplit {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  /* Gradient overlay from transparent on left to darker on right (where text will be) */
-  background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.7) 100%);
   z-index: 2;
+  
+  /* Split into two vertical sections */
   display: flex;
-  justify-content: flex-end; /* Aligns content to the right */
-  align-items: center;
+  flex-direction: column;
 }
 
+.topHalf {
+  width: 100%;
+  height: 50%; /* Exactly half the screen */
+  min-height: 250px; /* Ensure minimum reasonable size */
+  /* This half is empty - reserved for image only */
+}
+
+.bottomHalf {
+  width: 100%;
+  height: 50%; /* Exactly half the screen */
+  min-height: 250px; /* Ensure minimum reasonable size */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.8) 100%);
+  
+  /* Center content horizontally, top vertically */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Text container now sits inside the bottom half only */
 .textContainer {
-  width: 45%;
-  max-width: 550px;
+  width: 90%;
+  max-width: 600px;
   padding: 2rem;
   color: white;
-  margin-right: 5%; /* Add some margin from the right edge */
+  text-align: center;
 }
 
 .heroTitle {
-  font-size: 3.8rem;
+  font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 1rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .heroSubtitle {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-bottom: 2rem;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .ctaContainer {
   display: flex;
+  justify-content: center;
   gap: 1rem;
 }
 
@@ -92,88 +113,78 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  /* Start changes for tablets and below */
-  .overlay {
-    /* Add flex-direction column to better control text placement */
-    flex-direction: column;
-    justify-content: flex-end;
+/* Desktop styles (overrides for large screens) */
+@media (min-width: 1025px) {
+  .heroSplit {
+    flex-direction: row; /* Side by side on desktop */
+  }
+  
+  .topHalf {
+    width: 50%;
+    height: 100%;
+  }
+  
+  .bottomHalf {
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%);
+    
+    /* Align content center on desktop */
     align-items: center;
-    /* Clear gradient - we'll use the mobile gradient */
-    background: linear-gradient(
-      to bottom,
-      rgba(0,0,0,0) 0%,
-      rgba(0,0,0,0) 50%,
-      rgba(0,0,0,0.6) 70%,
-      rgba(0,0,0,0.9) 100%
-    );
   }
   
   .textContainer {
-    width: 90%;
-    max-width: 600px;
-    margin-right: 0;
-    text-align: center;
-    margin-bottom: 10%;
-  }
-}
-
-@media (max-width: 768px) {
-  .heroContainer {
-    /* Fixed height helps iOS handle viewport issues better */
-    height: 100vh; 
-    /* Add -webkit height for iOS Safari */
-    height: -webkit-fill-available;
-  }
-  
-  .heroImage {
-    /* Focus on upper portion of image */
-    background-position: center 30%;
-  }
-  
-  .overlay {
-    background: linear-gradient(
-      to bottom,
-      rgba(0,0,0,0) 0%,      /* Completely transparent at the top */
-      rgba(0,0,0,0) 45%,     /* Still transparent through almost half */
-      rgba(0,0,0,0.5) 60%,   /* Start fading in just after the middle */
-      rgba(0,0,0,0.8) 75%,   /* Darker as we move down */
-      rgba(0,0,0,0.9) 100%   /* Darkest at the bottom */
-    );
-  }
-  
-  .textContainer {
-    /* Reset position to use simpler, more reliable approach */
-    position: static;
-    transform: none;
-    padding-bottom: 2rem;
-    margin-top: auto; /* Push to the bottom with flexbox */
-    width: 100%;
-    margin-bottom: 5vh; /* Use vh for more consistent spacing */
+    text-align: left;
+    padding: 3rem;
   }
   
   .heroTitle {
-    font-size: 2.3rem;
+    font-size: 3.5rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.5rem;
+  }
+  
+  .ctaContainer {
+    justify-content: flex-start;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .heroImage {
+    background-position: center 25%; /* Focus even higher on face */
+  }
+  
+  .bottomHalf {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.9) 100%);
+  }
+  
+  .textContainer {
+    padding: 1.5rem 1rem;
+  }
+  
+  .heroTitle {
+    font-size: 2rem;
     line-height: 1.2;
   }
   
   .heroSubtitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 1.4;
     margin-bottom: 1.5rem;
   }
   
   .ctaContainer {
-    justify-content: center;
-    flex-wrap: wrap; /* Allow buttons to wrap if needed */
+    flex-wrap: wrap;
     gap: 0.8rem;
   }
   
   .primaryCta, .secondaryCta {
     padding: 0.7rem 1.2rem;
     font-size: 0.95rem;
-    min-width: 120px; /* Ensure reasonable tap target size */
+    min-width: 120px;
   }
 }
 
@@ -182,62 +193,10 @@
   .heroContainer {
     /* Fix for iOS height issues */
     height: -webkit-fill-available;
-    min-height: 500px;
   }
   
-  .overlay {
-    /* iOS sometimes needs more explicit positioning */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
-  
+  /* Extra padding for iOS interface elements */
   .textContainer {
-    /* iOS Safari specific adjustments */
-    margin-bottom: max(5vh, 50px); /* Ensure text stays away from bottom */
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-}
-
-/* Small mobile devices */
-@media (max-width: 480px) {
-  .heroImage {
-    /* Focus even higher on very small screens */
-    background-position: center 25%;
-  }
-  
-  .overlay {
-    background: linear-gradient(
-      to bottom,
-      rgba(0,0,0,0) 0%,      /* Completely transparent at the top */
-      rgba(0,0,0,0) 45%,     /* Still transparent through almost half */
-      rgba(0,0,0,0.6) 60%,   /* Start fading in just after the middle */
-      rgba(0,0,0,0.85) 75%,  /* Darker as we move down */
-      rgba(0,0,0,0.95) 100%  /* Darkest at the bottom */
-    );
-  }
-  
-  .textContainer {
-    padding: 1.5rem;
-    margin-bottom: 2vh; /* Less bottom margin on very small screens */
-  }
-  
-  .heroTitle {
-    font-size: 1.8rem;
-  }
-  
-  .heroSubtitle {
-    font-size: 1rem;
-    margin-bottom: 1.2rem;
-  }
-  
-  .ctaContainer {
-    gap: 0.6rem;
-  }
-  
-  .primaryCta, .secondaryCta {
-    padding: 0.6rem 1rem;
-    font-size: 0.9rem;
+    padding-bottom: 3rem; 
   }
 }
