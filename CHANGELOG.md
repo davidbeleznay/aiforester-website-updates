@@ -1,11 +1,12 @@
 # Changelog
 
 ## 2025-05-04
-- Improved hero image display on mobile devices
-- Updated gradient overlay for better text readability on small screens
-- Adjusted image positioning and text alignment for mobile
-- Added extra breakpoint for small mobile devices
-- Optimized padding and spacing for different screen sizes
+- Fixed critical mobile display issue where text was covering the face in hero image
+- Repositioned text to only appear in the lower half of mobile screens
+- Created transparent-to-dark gradient that preserves the top portion of the image
+- Used absolute positioning to ensure text stays in bottom section
+- Adjusted background-position to center top to prioritize face visibility
+- Optimized text size and contrast for better readability against all backgrounds
 - Updated hero content with more brand-focused messaging
 
 ## 2025-04-27
