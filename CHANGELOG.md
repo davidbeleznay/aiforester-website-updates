@@ -1,13 +1,14 @@
 # Changelog
 
 ## 2025-05-04
-- Fixed critical iOS-specific display issues with hero image on iPhone
-- Implemented specialized iOS Safari support using `-webkit-fill-available`
-- Changed positioning method to use flexbox instead of absolute positioning for better iOS compatibility
-- Adjusted gradient breakpoints to ensure text remains only in the bottom half
-- Modified background-position to focus higher on the image (face area)
-- Added iOS-specific media query using `@supports (-webkit-touch-callout: none)`
-- Improved viewport handling to prevent layout issues on iOS Safari
+- Complete redesign of hero component with guaranteed text placement
+- Implemented explicit top/bottom split layout for mobile devices
+- Top half (50%) reserved exclusively for face visibility in the image
+- Bottom half contains all text with proper gradient background
+- Removed all relative positioning that could cause layout issues
+- Added desktop-specific override for side-by-side layout
+- Enhanced iOS compatibility with -webkit-fill-available heights
+- Simplified structure for maximum cross-browser compatibility
 - Updated hero content with more brand-focused messaging
 
 ## 2025-04-27
