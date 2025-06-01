@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import styles from '../styles/Hero.module.css';
 
 export default function Hero() {
@@ -19,8 +20,15 @@ export default function Hero() {
               Helping busy builders unlock real-world potential with AI + tech solutions built on 20+ years in the field
             </p>
             <div className={styles.ctaContainer}>
-              <button className={styles.primaryCta}>See My Work</button>
-              <button className={styles.secondaryCta}>Let's Connect</button>
+              <Link href="/prompts" className={styles.primaryCta}>
+                Browse AI Prompts
+              </Link>
+              <a 
+                href="mailto:contact@aiforester.com?subject=Let's Connect&body=Hi! I'd like to discuss a potential collaboration or project."
+                className={styles.secondaryCta}
+              >
+                Let's Connect
+              </a>
             </div>
           </div>
         </div>
