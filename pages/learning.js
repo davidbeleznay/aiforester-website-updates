@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useState } from 'react'
+import styles from '../styles/Learning.module.css'
 
 export default function Learning() {
   const [searchQuery, setSearchQuery] = useState('')
@@ -90,15 +91,6 @@ export default function Learning() {
     return matchesCategory && matchesSearch
   })
 
-  const getLevelColor = (level) => {
-    switch(level) {
-      case 'Beginner': return 'bg-green-100 text-green-800'
-      case 'Intermediate': return 'bg-blue-100 text-blue-800'  
-      case 'Advanced': return 'bg-purple-100 text-purple-800'
-      default: return 'bg-gray-100 text-gray-800'
-    }
-  }
-
   return (
     <>
       <Head>
@@ -118,169 +110,116 @@ export default function Learning() {
         <meta name="twitter:description" content="Comprehensive educational resources for AI in forestry - tutorials, case studies, and research." />
       </Head>
 
-      <div className="min-h-screen bg-gray-50">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-br from-green-800 via-green-700 to-green-600 text-white py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                AI Forestry Learning Hub
-              </h1>
-              <p className="text-xl md:text-2xl text-green-100 max-w-3xl mx-auto">
-                Master AI applications in forestry through hands-on tutorials, real-world case studies, and cutting-edge research
-              </p>
-            </div>
+      <div className={styles.main}>
+        {/* Header Section */}
+        <div className={styles.container}>
+          <header className={styles.header}>
+            <h1>AI Forestry Learning Hub</h1>
+            <p className={styles.subtitle}>
+              Master AI applications in forestry through hands-on tutorials, real-world case studies, and cutting-edge research
+            </p>
 
             {/* Search Bar */}
-            <div className="max-w-2xl mx-auto">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search tutorials, case studies, research..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-6 py-4 rounded-xl text-gray-800 text-lg placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-green-300"
-                />
-                <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
-                  <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                </div>
-              </div>
+            <div className={styles.searchContainer}>
+              <span className={styles.searchIcon}>🔍</span>
+              <input
+                type="text"
+                placeholder="Search tutorials, case studies, research..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className={styles.searchInput}
+              />
             </div>
-          </div>
-        </section>
+          </header>
 
-        {/* Category Filter */}
-        <section className="bg-white border-b border-gray-200 sticky top-0 z-40">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-wrap justify-center gap-2 py-6">
+          {/* Category Filter */}
+          <div className={styles.categoryFilter}>
+            <div className={styles.filterButtons}>
               {categories.map((category) => (
                 <button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`flex items-center px-6 py-3 rounded-full text-sm font-medium transition-all ${
-                    selectedCategory === category.id
-                      ? 'bg-green-600 text-white shadow-lg'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
+                  className={`${styles.filterButton} ${selectedCategory === category.id ? styles.active : ''}`}
                 >
-                  <span className="mr-2">{category.icon}</span>
+                  <span className={styles.icon}>{category.icon}</span>
                   {category.name}
-                  <span className="ml-2 bg-white bg-opacity-20 px-2 py-1 rounded-full text-xs">
-                    {category.count}
-                  </span>
+                  <span className={styles.count}>{category.count}</span>
                 </button>
               ))}
             </div>
           </div>
-        </section>
 
-        {/* Learning Resources Grid */}
-        <section className="py-12">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Learning Resources Grid */}
+          <section className={styles.section}>
             {filteredResources.length > 0 ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className={styles.resourceGrid}>
                 {filteredResources.map((resource) => (
-                  <article
-                    key={resource.id}
-                    className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group"
-                  >
-                    <div className="p-6">
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="text-sm font-medium text-green-600 bg-green-50 px-3 py-1 rounded-full">
-                          {resource.type}
-                        </span>
-                        <span className={`text-xs font-medium px-2 py-1 rounded-full ${getLevelColor(resource.level)}`}>
-                          {resource.level}
-                        </span>
-                      </div>
-                      
-                      <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-green-600 transition-colors">
-                        {resource.title}
-                      </h3>
-                      
-                      <p className="text-gray-600 mb-4 line-clamp-3">
-                        {resource.description}
-                      </p>
-                      
-                      <div className="flex items-center text-sm text-gray-500 mb-4">
-                        <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
+                  <article key={resource.id} className={styles.resourceCard}>
+                    <div className={styles.cardHeader}>
+                      <span className={`${styles.levelBadge} ${styles[resource.level.toLowerCase()]}`}>
+                        {resource.level}
+                      </span>
+                      <div className={styles.duration}>
+                        <span>⏱️</span>
                         {resource.duration}
                       </div>
-                      
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {resource.tags.map((tag, index) => (
-                          <span key={index} className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      
-                      <Link href={resource.url}>
-                        <a className="inline-flex items-center justify-center w-full px-6 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors">
-                          Start Learning
-                          <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </a>
-                      </Link>
                     </div>
+                    
+                    <h3 className={styles.cardTitle}>{resource.title}</h3>
+                    <p className={styles.cardDescription}>{resource.description}</p>
+                    
+                    <div className={styles.tagContainer}>
+                      {resource.tags.map((tag, index) => (
+                        <span key={index} className={styles.tag}>
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    
+                    <Link href={resource.url}>
+                      <a className={styles.ctaButton}>
+                        Start Learning
+                        <span>→</span>
+                      </a>
+                    </Link>
                   </article>
                 ))}
               </div>
             ) : (
-              <div className="text-center py-16">
-                <div className="text-6xl mb-4">🔍</div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">No resources found</h3>
-                <p className="text-gray-600 mb-6">Try adjusting your search terms or category filter</p>
+              <div className={styles.noResults}>
+                <div className={styles.icon}>🔍</div>
+                <h3>No resources found</h3>
+                <p>Try adjusting your search terms or category filter</p>
                 <button
                   onClick={() => {
                     setSearchQuery('')
                     setSelectedCategory('all')
                   }}
-                  className="px-6 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors"
+                  className={styles.clearButton}
                 >
                   Clear Filters
                 </button>
               </div>
             )}
-          </div>
-        </section>
+          </section>
 
-        {/* Learning Path CTA */}
-        <section className="bg-green-600 text-white py-16">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold mb-6">Ready to Apply AI in Your Forest Operations?</h2>
-            <p className="text-xl text-green-100 mb-8">
+          {/* CTA Section */}
+          <section className={styles.ctaSection}>
+            <h2>Ready to Apply AI in Your Forest Operations?</h2>
+            <p>
               Get personalized guidance on implementing AI solutions for your specific forestry challenges
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className={styles.ctaButtons}>
               <Link href="/services">
-                <a className="px-8 py-4 bg-white text-green-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors">
-                  Explore Consulting Services
-                </a>
+                <a className={styles.primary}>Explore Consulting Services</a>
               </Link>
               <Link href="/#contact">
-                <a className="px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-green-600 transition-colors">
-                  Schedule a Consultation
-                </a>
+                <a className={styles.secondary}>Schedule a Consultation</a>
               </Link>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </div>
-
-      <style jsx>{`
-        .line-clamp-3 {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      `}</style>
     </>
   )
 }
