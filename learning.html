@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Forestry Learning Hub | Tutorials, Case Studies & Research | AI Forester</title>
+    <meta name="description" content="Comprehensive learning resources for AI in forestry. Access tutorials, real-world case studies, and cutting-edge research to advance your forest technology knowledge.">
+    <meta name="keywords" content="AI forestry education, forest technology tutorials, forestry case studies, AI forest management, forest tech learning, forestry AI research">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="AI Forestry Learning Hub | Educational Resources">
+    <meta property="og:description" content="Access comprehensive tutorials, case studies, and research on AI applications in forestry.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aiforester.com/learning">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Search */
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px 15px 50px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            background: white;
+            padding: 20px 0;
+            margin: 30px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tab-button {
+            padding: 10px 20px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .tab-button.active,
+        .tab-button:hover {
+            background: #4a7c59;
+            border-color: #4a7c59;
+            color: white;
+        }
+
+        .tab-button .count {
+            margin-left: 8px;
+            background: rgba(255,255,255,0.2);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+        }
+
+        /* Content Grid */
+        .content-section {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #2c5530;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .level-badge {
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .level-badge.beginner {
+            background: #e8f5e8;
+            color: #2d5016;
+        }
+
+        .level-badge.intermediate {
+            background: #e3f2fd;
+            color: #0d47a1;
+        }
+
+        .level-badge.advanced {
+            background: #f3e5f5;
+            color: #4a148c;
+        }
+
+        .duration {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #2c5530;
+        }
+
+        .card-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: #f0f0f0;
+            color: #666;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #4a7c59 0%, #2c5530 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.3);
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .no-results.show {
+            display: block;
+        }
+
+        .no-results-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .clear-button {
+            padding: 10px 20px;
+            background: #4a7c59;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #4a7c59 0%, #2c5530 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            border-radius: 10px;
+            margin: 40px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-buttons a {
+            padding: 15px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-buttons .primary {
+            background: white;
+            color: #2c5530;
+        }
+
+        .cta-buttons .secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-buttons a:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .resource-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .tabs {
+                justify-content: center;
+            }
+            
+            .tab-button {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-buttons a {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* Hidden class for filtering */
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>AI Forestry Learning Hub</h1>
+            <p>Master AI applications in forestry through hands-on tutorials, real-world case studies, and cutting-edge research</p>
+            
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" placeholder="Search tutorials, case studies, research..." id="searchInput">
+            </div>
+        </div>
+    </header>
+
+    <!-- Filter Tabs -->
+    <div class="container">
+        <div class="filter-tabs">
+            <div class="tabs">
+                <button class="tab-button active" data-category="all">
+                    📚 All Resources <span class="count">6</span>
+                </button>
+                <button class="tab-button" data-category="tutorials">
+                    🎓 Tutorials <span class="count">3</span>
+                </button>
+                <button class="tab-button" data-category="case-studies">
+                    📊 Case Studies <span class="count">2</span>
+                </button>
+                <button class="tab-button" data-category="research">
+                    🔬 Research <span class="count">1</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Content Section -->
+        <section class="content-section">
+            <div class="resource-grid" id="resourceGrid">
+                
+                <!-- Tutorial 1 -->
+                <article class="resource-card" data-category="tutorials" data-tags="forest inventory computer vision machine learning">
+                    <div class="card-header">
+                        <span class="level-badge beginner">Beginner</span>
+                        <span class="duration">⏱️ 45 min</span>
+                    </div>
+                    <h3 class="card-title">AI Forest Inventory Fundamentals</h3>
+                    <p class="card-description">Complete guide to implementing AI-powered forest inventory systems, from data collection to model deployment.</p>
+                    <div class="tags">
+                        <span class="tag">forest inventory</span>
+                        <span class="tag">computer vision</span>
+                        <span class="tag">machine learning</span>
+                    </div>
+                    <a href="/learning/tutorials/ai-forest-inventory" class="cta-button">Start Learning →</a>
+                </article>
+
+                <!-- Case Study 1 -->
+                <article class="resource-card" data-category="case-studies" data-tags="government ROI implementation BC">
+                    <div class="card-header">
+                        <span class="level-badge intermediate">Intermediate</span>
+                        <span class="duration">⏱️ 15 min read</span>
+                    </div>
+                    <h3 class="card-title">British Columbia Government AI Implementation</h3>
+                    <p class="card-description">How BC achieved 40% accuracy improvement and $850K annual savings with AI forest inventory automation.</p>
+                    <div class="tags">
+                        <span class="tag">government</span>
+                        <span class="tag">ROI</span>
+                        <span class="tag">implementation</span>
+                    </div>
+                    <a href="/learning/case-studies/bc-government" class="cta-button">Read Case Study →</a>
+                </article>
+
+                <!-- Research 1 -->
+                <article class="resource-card" data-category="research" data-tags="climate risk assessment research adaptation">
+                    <div class="card-header">
+                        <span class="level-badge advanced">Advanced</span>
+                        <span class="duration">⏱️ 20 min read</span>
+                    </div>
+                    <h3 class="card-title">Climate Risk Assessment with AI</h3>
+                    <p class="card-description">Latest research on using AI for forest climate risk assessment and adaptive management strategies.</p>
+                    <div class="tags">
+                        <span class="tag">climate</span>
+                        <span class="tag">risk assessment</span>
+                        <span class="tag">research</span>
+                    </div>
+                    <a href="/learning/research/climate-risk-ai" class="cta-button">Read Research →</a>
+                </article>
+
+                <!-- Tutorial 2 -->
+                <article class="resource-card" data-category="tutorials" data-tags="drones monitoring automation UAV">
+                    <div class="card-header">
+                        <span class="level-badge intermediate">Intermediate</span>
+                        <span class="duration">⏱️ 60 min</span>
+                    </div>
+                    <h3 class="card-title">Drone-Based Forest Monitoring Setup</h3>
+                    <p class="card-description">Practical guide to setting up automated drone monitoring systems for forest health assessment.</p>
+                    <div class="tags">
+                        <span class="tag">drones</span>
+                        <span class="tag">monitoring</span>
+                        <span class="tag">automation</span>
+                    </div>
+                    <a href="/learning/tutorials/drone-monitoring" class="cta-button">Start Learning →</a>
+                </article>
+
+                <!-- Case Study 2 -->
+                <article class="resource-card" data-category="case-studies" data-tags="carbon private sector revenue tracking">
+                    <div class="card-header">
+                        <span class="level-badge intermediate">Intermediate</span>
+                        <span class="duration">⏱️ 12 min read</span>
+                    </div>
+                    <h3 class="card-title">Private Forest Company Carbon Tracking</h3>
+                    <p class="card-description">$1.8M additional revenue through AI-powered precision carbon tracking and verification systems.</p>
+                    <div class="tags">
+                        <span class="tag">carbon</span>
+                        <span class="tag">private sector</span>
+                        <span class="tag">revenue</span>
+                    </div>
+                    <a href="/learning/case-studies/carbon-tracking" class="cta-button">Read Case Study →</a>
+                </article>
+
+                <!-- Tutorial 3 -->
+                <article class="resource-card" data-category="tutorials" data-tags="machine learning species classification training models">
+                    <div class="card-header">
+                        <span class="level-badge advanced">Advanced</span>
+                        <span class="duration">⏱️ 90 min</span>
+                    </div>
+                    <h3 class="card-title">Species Classification Model Training</h3>
+                    <p class="card-description">Deep dive into training custom computer vision models for forest species identification.</p>
+                    <div class="tags">
+                        <span class="tag">machine learning</span>
+                        <span class="tag">species classification</span>
+                        <span class="tag">training</span>
+                    </div>
+                    <a href="/learning/tutorials/species-classification" class="cta-button">Start Learning →</a>
+                </article>
+
+            </div>
+
+            <!-- No Results Message -->
+            <div class="no-results" id="noResults">
+                <div class="no-results-icon">🔍</div>
+                <h3>No resources found</h3>
+                <p>Try adjusting your search terms or category filter</p>
+                <button class="clear-button" onclick="clearFilters()">Clear Filters</button>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Ready to Apply AI in Your Forest Operations?</h2>
+            <p>Get personalized guidance on implementing AI solutions for your specific forestry challenges</p>
+            <div class="cta-buttons">
+                <a href="/services" class="primary">Explore Consulting Services</a>
+                <a href="/#contact" class="secondary">Schedule a Consultation</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Search and filter functionality
+        const searchInput = document.getElementById('searchInput');
+        const resourceGrid = document.getElementById('resourceGrid');
+        const noResults = document.getElementById('noResults');
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const resourceCards = document.querySelectorAll('.resource-card');
+        
+        let currentCategory = 'all';
+
+        // Search functionality
+        searchInput.addEventListener('input', function() {
+            filterResources();
+        });
+
+        // Tab functionality
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Update active tab
+                tabButtons.forEach(tab => tab.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update current category
+                currentCategory = this.dataset.category;
+                
+                // Filter resources
+                filterResources();
+            });
+        });
+
+        function filterResources() {
+            const searchTerm = searchInput.value.toLowerCase();
+            let visibleCount = 0;
+
+            resourceCards.forEach(card => {
+                const cardCategory = card.dataset.category;
+                const cardTags = card.dataset.tags.toLowerCase();
+                const cardTitle = card.querySelector('.card-title').textContent.toLowerCase();
+                const cardDescription = card.querySelector('.card-description').textContent.toLowerCase();
+                
+                // Check category match
+                const categoryMatch = currentCategory === 'all' || cardCategory === currentCategory;
+                
+                // Check search match
+                const searchMatch = searchTerm === '' || 
+                    cardTitle.includes(searchTerm) || 
+                    cardDescription.includes(searchTerm) || 
+                    cardTags.includes(searchTerm);
+                
+                if (categoryMatch && searchMatch) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            // Show/hide no results message
+            if (visibleCount === 0) {
+                noResults.classList.add('show');
+            } else {
+                noResults.classList.remove('show');
+            }
+        }
+
+        function clearFilters() {
+            searchInput.value = '';
+            currentCategory = 'all';
+            
+            // Reset active tab
+            tabButtons.forEach(tab => tab.classList.remove('active'));
+            tabButtons[0].classList.add('active');
+            
+            // Show all resources
+            resourceCards.forEach(card => {
+                card.classList.remove('hidden');
+            });
+            
+            noResults.classList.remove('show');
+        }
+    </script>
+</body>
+</html>
